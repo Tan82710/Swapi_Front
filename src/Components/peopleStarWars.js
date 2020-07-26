@@ -37,10 +37,10 @@ render(){
     (people) => {
       return people.name.indexOf(this.state.inputValue) !== -1
     }
-  )
+  ) 
   const listName = data.map((people) => {
     return (
-    <li key={people.url}><NavLink to={"/detail?url=" + people.url}>{people.name}</NavLink></li>
+    <li key={people.url}><NavLink to={"/detail?id=" + people.url.charAt(people.url.length-2)}>{people.name}</NavLink></li>
     )
   })
 

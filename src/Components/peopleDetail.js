@@ -11,7 +11,7 @@ export default class Detail extends React.Component {
 
 	componentDidMount() {
 		const url = window.location.href
-		let id = url.charAt(url.length-2)
+		let id = url.charAt(url.length-1)
 		this.callAPI(id)
 	  }
 
