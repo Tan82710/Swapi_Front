@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  background-image: '/Img/espace';
 }
 
 .App-logo {
@@ -26,6 +27,15 @@
 
 .App-link {
   color: #61dafb;
+}
+
+.textInput {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  resize: both;
+  min-height: 40px;
+  line-height: 20px;
 }
 
 @keyframes App-logo-spin {
