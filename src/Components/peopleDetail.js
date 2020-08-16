@@ -14,11 +14,10 @@ export default class Detail extends React.Component {
 			apiResponse : [],
 			filmsResponse : [],
 			filmsArray : [],
-			id : '',
-			inputValue: [],
-			urlFilm : [],
-			film : [],
-			background : ''
+			vehiclesResponse : [],
+			vehiclesArray : [],
+			background : '',
+
 		}
 	}
 
@@ -27,13 +26,13 @@ export default class Detail extends React.Component {
 		const splitId = url.split("http://localhost:3000/detail?id=")
 		const id = splitId[1]
 		this.state.id = id
-		console.log(id)
 		this.callAPI(id)
 		this.callFilms(id)
 		this.callAPIFilms()
-
+		this.callVehicles()
 	  }
 
+	//Récupération des détails des personnages
 	callAPI(id) {
 		fetch(`http://localhost:4200/detail/${id}`,  
 		{headers: {
@@ -45,16 +44,18 @@ export default class Detail extends React.Component {
 		
 	}
 
+	//Récupération des films du détail
 	callFilms(id){
 		fetch(`http://localhost:4200/detail/${id}`,  
 		{headers: {
 	  	'Content-Type': 'application/json'
 		}})
 		.then(res => res.json())
-		.then(res => this.setState({ filmsArray: res.films}))
+		.then(res => this.setState({ filmsArray: res.films, vehiclesArray: res.vehicles}))
 		.catch(err => err)
 	}
 
+	//Récupération de tous les films pour affichage des titres
 	callAPIFilms(){
 		fetch(`http://localhost:4200/films/`,  
 		{headers: {
@@ -65,36 +66,74 @@ export default class Detail extends React.Component {
 		.catch(err => err)
 	}
 
-	
-	callAPIFilm(id){
-		fetch(`http://localhost:4200/films/${id}`,  
+	callVehicles(){
+		fetch(`http://localhost:4200/vehicles/`,  
 		{headers: {
 	  	'Content-Type': 'application/json'
 		}})
 		.then(res => res.json())
-		.then(res => this.setState({ film: res.results}))
+		.then(res => this.setState({ vehiclesResponse: res.results}))
 		.catch(err => err)
 	}
+
 
   render() {
 
 	const data = this.state.apiResponse
 	const arrayFilm = this.state.filmsArray
 	const dataFilms = this.state.filmsResponse
+	const dataVehicles = this.state.vehiclesResponse
+	const arrayVehicle = this.state.vehiclesArray
 
 	const listfilms = dataFilms.map((film) => {
-		this.state.urlFilm = film.url.charAt(film.url.length-2)
-		const url = this.state.urlFilm
-		console.log(url)
-		return film.title
-})
+		return [film.url, film.title]
+	})
 
-const arrayUrl = arrayFilm.map(res => {
-	this.state.id = res.charAt(res.length-2)
-	const id = this.state.id
-	return id
-})
+	const film = arrayFilm.map(res => {
+		return res
+	})
 
+	const arrayVehicles = dataVehicles.map((res) => {
+		return [res.url, res.name]
+	})
+
+	const vehicle = arrayVehicle.map((res) => {
+		return res
+	})
+
+	console.log(film)
+	console.log(listfilms)
+	console.log(arrayVehicles)
+	console.log(vehicle)
+	
+
+// Comparaison des 2 tableaux vehicles
+const vehicles = arrayVehicles.filter((res1) => {
+	return vehicle.some((res2) => {
+		console.log(res2)
+		return res1[0] === res2
+	})
+}).map((res) => {
+	const url = res[0]
+	const name = res[1]
+	return <li key={url}>{name}</li>
+})
+console.log(vehicles)
+
+//Comparaison des 2 tableaux films
+const films = listfilms.filter((res1) => {
+	return film.some((res2) => {
+		return res1[0] === res2
+	})
+}).map((res) => {
+	const url = res [0]
+	const title = res[1]
+	return <li key={url}>{title}</li>
+})
+console.log(films)
+
+
+//Changement de background selon la planète
 const url = data.homeworld
 let background
 let homeworld
@@ -128,20 +167,20 @@ switch(url) {
 			opacity: 0.9
         }}>
 			<p>Details of {data.name} :</p>
-			<li>Gender : {data.gender}</li> 
-			<li>Birthday Year : {data.birth_year}</li> 
-			<li>Height : {data.height}</li> 
-			<li>Mass : {data.mass}</li> 
-			<li>Hair Color : {data.hair_color}</li> 
-			<li>Skin Color : {data.skin_color}</li> 
-			<li>Eye Color : {data.eye_color}</li>
-			<li>HomeWorld : {homeworld}</li>  
-			{/* <li>Films :</li><ul>{arrayUrl}</ul> */}
-			<li>Species : {data.species}</li> 
-			<li>Vehicles : {data.vehicles}</li>
-			<li>Starships : {data.starships}</li> 
-			<li>Created : {data.created}</li> 
-			<li>Edited : {data.edited}</li>  
+			<tr>Gender : {data.gender}</tr> 
+			<tr>Birthday Year : {data.birth_year}</tr> 
+			<tr>Height : {data.height}</tr> 
+			<tr>Mass : {data.mass}</tr> 
+			<tr>Hair Color : {data.hair_color}</tr> 
+			<tr>Skin Color : {data.skin_color}</tr> 
+			<tr>Eye Color : {data.eye_color}</tr>
+			<tr>HomeWorld : {homeworld}</tr>  
+			<tr>Films : <ul>{films}</ul></tr>
+			<tr>Species : {data.species}</tr> 
+			<tr>Vehicles : <ul>{vehicles}</ul></tr>
+			<tr>Starships : {data.starships}</tr> 
+			<tr>Created : {data.created}</tr> 
+			<tr>Edited : {data.edited}</tr>  
 			</Paper> 
 		</div>
 	)

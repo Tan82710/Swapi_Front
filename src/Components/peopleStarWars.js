@@ -64,7 +64,7 @@ render(){
               color : 'white'
         }}>
           <CardContent> 
-            <Typography variant="h5" component="h2">
+            <Typography variant="h5" component="h2" key={people.url}>
               {people.name}
             </Typography>
             <Typography variant="body2" component="p">
