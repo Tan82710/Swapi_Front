@@ -26,7 +26,8 @@ class People extends React.Component {
   }
 
 callAPI() {
-    fetch('http://localhost:4200/people',  
+
+    fetch(`http://localhost:4200/people/`,  
     {headers: {
       'Content-Type': 'application/json'
     }})
