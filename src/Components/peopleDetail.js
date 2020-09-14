@@ -11,7 +11,7 @@ export default class Detail extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = { 
-			background : '', apiResponse : [],
+			background : '', apiResponse : [], name : [],
 			filmsResponse : [], filmsArray : [],
 			vehiclesResponse : [], vehiclesArray : [],
 			speciesResponse : [], speciesArray : [],
@@ -52,7 +52,7 @@ export default class Detail extends React.Component {
 	  	'Content-Type': 'application/json'
 		}})
 		.then(res => res.json())
-		.then(res => this.setState({ filmsArray: res.films, vehiclesArray: res.vehicles, speciesArray: res.species, starshipsArray: res.starships}))
+		.then(res => this.setState({name : res.name, filmsArray: res.films, vehiclesArray: res.vehicles, speciesArray: res.species, starshipsArray: res.starships}))
 		.catch(err => err)
 	}
 
