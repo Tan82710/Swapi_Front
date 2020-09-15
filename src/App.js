@@ -3,11 +3,15 @@ import logo from './logo.svg';
 import './App.css';
 import People from "./Components/peopleStarWars"
 import Detail from "./Components/peopleDetail"
-import Root from "./Components/root"
+import Root from "./Components/root.js"
 import Login from "./Components/login"
 import {BrowserRouter as Router, Route} from 'react-router-dom'
 
 class App extends React.Component {
+
+  getSession(){
+    
+  }
 
 render(){ 
 

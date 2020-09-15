@@ -37,6 +37,7 @@ export default function LoginSwapi() {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
     const [status, setStatus] = useState("")
+    const [isAuth, setIsAuth] = useState(false)
 
     //Récupération du status
     const log = () => {
@@ -52,13 +53,23 @@ export default function LoginSwapi() {
         .then((res) => setStatus(res.status))
     };
 
+    async function checkStatus(){   
+        if(status == 200){
+            setIsAuth(true)
+        }
+    }
+      
+
     //Vérification du status et redirection après connexion
     useEffect(() => {
-        console.log(status)
-        if(status == 200){
-            return history.push('/')
-        }
-    })
+
+        checkStatus()
+        // } if (isAuth) {
+        //     return history.push('/peoples')
+        // }else {
+        //     // return history.push('/login')
+        // }
+    }, [])
  
     return (
         <div className="background" 
