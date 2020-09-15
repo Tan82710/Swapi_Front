@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from "react-router-dom";
 // import { Redirect } from 'react-router'
 import TextField from '@material-ui/core/TextField';
@@ -38,6 +38,7 @@ export default function LoginSwapi() {
     const [password, setPassword] = useState("")
     const [status, setStatus] = useState("")
 
+    //Récupération du status
     const log = () => {
         axios({
             method: "POST",
@@ -51,20 +52,20 @@ export default function LoginSwapi() {
         .then((res) => setStatus(res.status))
     };
 
-    const checkStatus = () => {
+    //Vérification du status et redirection après connexion
+    useEffect(() => {
         console.log(status)
         if(status == 200){
             return history.push('/')
         }
-    }
-
-    
+    })
+ 
     return (
         <div className="background" 
         style={{backgroundImage: `url(${background})`}}>
         <Paper className={classes.paper}>
-            <img src={jedi} style={{position: "absolute", width:100, height:100, left : '400px', top : '150px'}}/>
-            <img src={sith} style={{position: "absolute", width:100, height:100, right : '400px', top : '150px'}}/>
+            <img src={jedi} style={{position: "absolute", width:100, height:100, left : '500px', top : '150px'}}/>
+            <img src={sith} style={{position: "absolute", width:100, height:100, right : '500px', top : '150px'}}/>
             <form className={classes.root}>
                     <TextField id="outlined-search" label="username" type="search" variant="outlined"
                     onChange={e => setUsername(e.target.value)}/>
@@ -79,7 +80,6 @@ export default function LoginSwapi() {
                     />
                     <div style={{height : 20}} />
                     <Button color='primary' variant="contained" onClick={log}>Log In with The Force</Button>
-                    <Button color='primary' variant="contained" onClick={checkStatus}>Status</Button>
             </form>
         </Paper>
         </div>
