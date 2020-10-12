@@ -64,21 +64,23 @@ export default function LoginSwapi() {
     useEffect(() => {
 
         checkStatus()
-        // } if (isAuth) {
-        //     return history.push('/peoples')
+        if (isAuth) {
+            return history.push('/peoples')
         // }else {
-        //     // return history.push('/login')
+        //     return history.push('/login')
         // }
-    }, [])
+        // }, [])
+        }
+        })
  
     return (
         <div className="background" 
         style={{backgroundImage: `url(${background})`}}>
         <Paper className={classes.paper}>
-            <img src={jedi} style={{position: "absolute", width:100, height:100, left : '500px', top : '150px'}}/>
-            <img src={sith} style={{position: "absolute", width:100, height:100, right : '500px', top : '150px'}}/>
+            <img src={jedi} style={{position: "fixed", width:100, height:100, left : '510px', top : '150px'}}/>
+            <img src={sith} style={{position: "fixed", width:100, height:100, right : '510px', top : '150px'}}/>
             <form className={classes.root}>
-                    <TextField id="outlined-search" label="username" type="search" variant="outlined"
+                    <TextField label="username" type="search" variant="outlined"
                     onChange={e => setUsername(e.target.value)}/>
                     <br />
                     <TextField

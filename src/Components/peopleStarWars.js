@@ -85,8 +85,8 @@ render(){
     <div style = {{backgroundImage : `url(${espace})`}}>
       <h1 style={{color : 'white', textAlign : 'center'}}>API Star Wars</h1>
         <div style={{textAlign : 'center'}}>
-          <p> <h2 style={{color: 'white'}}>Search by name : </h2>
-          <input label="Search by name" class="textInput" type='text' value={this.state.inputValue} onChange={this.updateSearch.bind(this)}/></p>
+          <h2 style={{color: 'white'}}>Search by name : </h2>
+          <input label="Search by name" class="textInput" type='text' value={this.state.inputValue} onChange={this.updateSearch.bind(this)}/>
         </div>
       <div>
         <Grid container spacing={6}> 

@@ -10,3 +10,10 @@
   height: 100%;
   position: fixed;
 }
+
+.textInput {
+  /* margin-left: 10%; */
+  /* margin-right: 10%; */
+  border-radius: 30px;
+  background-color: #f6f6f6;
+}

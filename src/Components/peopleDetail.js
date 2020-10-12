@@ -230,7 +230,7 @@ switch(url) {
 			padding: 10,
 			opacity: 0.9
         }}>
-			<p>Details of {data.name} :</p>
+			<h1 style={{fontWeight : 'bold'}}>Details of {data.name}</h1>
 			<tr>Gender : {data.gender}</tr> 
 			<tr>Birthday Year : {data.birth_year}</tr> 
 			<tr>Height : {data.height}</tr> 
