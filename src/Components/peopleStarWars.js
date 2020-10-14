@@ -45,7 +45,8 @@ render(){
   console.log(this.state.apiResponse)
   const data  = this.state.apiResponse.filter(
     (people) => {
-      return people.name.indexOf(this.state.inputValue) !== -1
+      //toLowerCase() permet de ne pas prendre en compte les majuscules lors d'une recherche
+      return people.name.toLowerCase().indexOf(this.state.inputValue.toLowerCase()) !== -1
     }
   ) 
   console.log('DATA' + JSON.stringify(data))

@@ -5,23 +5,23 @@ import People from "./Components/peopleStarWars"
 import Detail from "./Components/peopleDetail"
 import Root from "./Components/root.js"
 import Login from "./Components/login"
-import {BrowserRouter as Router, Route} from 'react-router-dom'
+import Error from "./Components/errorPage"
+import {ProtectedRoot} from "./Components/protected.root"
+import {BrowserRouter as Router, Route, Redirect, Switch} from 'react-router-dom'
 
 class App extends React.Component {
 
-  getSession(){
-    
-  }
-
 render(){ 
-
   return (
-<Router>
-    <Route exact path={"/"} render={(props) => <Root/>}/>
-    <Route exact path={"/peoples"} render={(props) => <People/>}/>
-    <Route exact path={"/detail"} render={(props) => <Detail/>}/>
-    <Route exact path={"/login"} render={(props) => <Login/>}/>
-</Router>
+    <Router>
+      <Switch>
+        <Route exact path={"/"} render={(props) => <Root/>}/>
+        <ProtectedRoot exact path={'/peoples'} component={People}/>
+        <ProtectedRoot exact path={"/detail"} component={Detail}/>
+        <Route exact path={"/login"} component={Login} />
+        <Route exact path="*" component={Error} />
+      </Switch>
+    </Router>
   );
   }
 }
