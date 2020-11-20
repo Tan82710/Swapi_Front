@@ -35,7 +35,7 @@ export default class Detail extends React.Component {
 
 	//Récupération des détails des personnages
 	callAPI(id) {
-		fetch(`http://localhost:4200/detail/${id}`,  
+		fetch(`http://localhost:4100/detail/${id}`,  
 		{headers: {
 	  	'Content-Type': 'application/json'
 		}})
@@ -47,7 +47,7 @@ export default class Detail extends React.Component {
 
 	//Récupération des films du détail
 	callAPIFilms(id){
-		fetch(`http://localhost:4200/detail/${id}`,  
+		fetch(`http://localhost:4100/detail/${id}`,  
 		{headers: {
 	  	'Content-Type': 'application/json'
 		}})
@@ -58,7 +58,7 @@ export default class Detail extends React.Component {
 
 	//Récupération de tous les films pour affichage des titres
 	callFilms(){
-		fetch(`http://localhost:4200/films/`,  
+		fetch(`http://localhost:4100/films/`,  
 		{headers: {
 	  	'Content-Type': 'application/json'
 		}})
@@ -69,7 +69,7 @@ export default class Detail extends React.Component {
 
 	//Récupération des véhicules
 	callVehicles(){
-		fetch(`http://localhost:4200/vehicles/`,  
+		fetch(`http://localhost:4100/vehicles/`,  
 		{headers: {
 	  	'Content-Type': 'application/json'
 		}})
@@ -80,7 +80,7 @@ export default class Detail extends React.Component {
 
 	//Récupération des espèces
 	callSpecies(){
-		fetch(`http://localhost:4200/species/`,  
+		fetch(`http://localhost:4100/species/`,  
 		{headers: {
 	  	'Content-Type': 'application/json'
 		}})
@@ -91,7 +91,7 @@ export default class Detail extends React.Component {
 
 	//Récupération des vaisseaux
 	callStarships(){
-		fetch(`http://localhost:4200/starships/`,  
+		fetch(`http://localhost:4100/starships/`,  
 		{headers: {
 		'Content-Type': 'application/json'
 		}})

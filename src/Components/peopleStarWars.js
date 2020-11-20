@@ -23,11 +23,18 @@ class People extends React.Component {
 
   componentDidMount() {
     this.callAPI()
+    this.playAudio()
   }
+
+  playAudio() {
+    const audioEl = document.getElementsByClassName("audio-element")[0]
+    audioEl.play()
+  }
+
 
 callAPI() {
 
-    fetch(`http://localhost:4200/people/`,  
+    fetch(`http://localhost:4100/people/`,  
     {headers: {
       'Content-Type': 'application/json'
     }})
@@ -49,7 +56,7 @@ render(){
       return people.name.toLowerCase().indexOf(this.state.inputValue.toLowerCase()) !== -1
     }
   ) 
-  console.log('DATA' + JSON.stringify(data))
+  // console.log('DATA' + JSON.stringify(data))
   
   const listName = data.map((people) => {
     const myid = people.url.split("http://swapi.dev/api/people/")
@@ -83,13 +90,18 @@ render(){
   })
 
   return (
-    <div style = {{backgroundImage : `url(${espace})`}}>
+    <div className="background" style = {{backgroundImage : `url(${espace})`}}>
+        <audio className="audio-element">
+          <source src="../mp3/sw_song.mp3"></source>
+        </audio>
+      <div class='fixed'>
       <h1 style={{color : 'white', textAlign : 'center'}}>API Star Wars</h1>
-        <div style={{textAlign : 'center'}}>
+        <div class="searchBar">
           <h2 style={{color: 'white'}}>Search by name : </h2>
           <input label="Search by name" class="textInput" type='text' value={this.state.inputValue} onChange={this.updateSearch.bind(this)}/>
         </div>
-      <div>
+      </div>
+      <div class="grid" xs='100%' sm='75%' md='50%' lg='25%'>
         <Grid container spacing={6}> 
           {listName}
         </Grid>

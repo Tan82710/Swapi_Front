@@ -48,7 +48,7 @@ export default function LoginSwapi() {
                 password: password,
             },
             withCredentials: false,
-            url: "http://localhost:4200/login"
+            url: "http://localhost:4100/login"
         })
             .then((res) => setStatus(res.status))
     };
@@ -75,8 +75,11 @@ export default function LoginSwapi() {
         <div className="background"
             style={{ backgroundImage: `url(${background})` }}>
             <Paper className={classes.paper}>
-                <img src={jedi} style={{ position: "fixed", width: 100, height: 100, left: '510px', top: '150px' }} />
-                <img src={sith} style={{ position: "fixed", width: 100, height: 100, right: '510px', top: '150px' }} />
+                {/* <img src={jedi} style={{ position: "fixed", width: 100, height: 100, left: '510px', top: '150px' }} />
+                <img src={sith} style={{ position: "fixed", width: 100, height: 100, right: '510px', top: '150px' }} /> */}
+                <div class="icon">
+                    <img src={jedi} style={{ width: 100, height: 100, }} />
+            
                 <form className={classes.root}>
                     <TextField label="username" type="search" variant="outlined"
                         onChange={e => setUsername(e.target.value)} />
@@ -92,6 +95,8 @@ export default function LoginSwapi() {
                     <div style={{ height: 20 }} />
                     <Button color='primary' variant="contained" onClick={log}>Log In with The Force</Button>
                 </form>
+                <img src={sith} style={{ width: 100, height: 100, }} />
+                </div>
             </Paper>
         </div>
     )
